@@ -1,0 +1,46 @@
+﻿@charset "utf-8";
+.ce{background-color:#F5F5F5;border-right:1px solid #2468a9;width:190px;position:fixed;top:45px;left:0px;bottom:0px;color:black;}
+.ce li{}
+.more{margin-left: 36px;}
+.ce li a{padding: 10px 10px 10px 40px;color:black;display:block;cursor:pointer;}
+.ce li a:hover{background:url(../images/tu.png) no-repeat 10px center;}
+.ce li .dqian{background:none}
+.ce li .xz{background:url(../images/tu.png) no-repeat 10px center;color: #0c93e4;}
+
+.limenuitem {
+    border-bottom:1px solid #E5E5E5;
+    cursor:pointer;
+    line-height:38px;
+    text-indent:10px;
+    font-weight:600;
+    font-size:13px;
+    border-left:3px solid #F5F5F5;
+}
+.limenuitem:hover {
+    background-color:white;
+    color:#2B7DBC;
+            
+}
+.limenuitem:hover .ulleftsubitems li {
+    color:black;
+}
+.menuicon {
+    margin-right:10px;
+}
+.arrow-down {
+    float:right;line-height:38px;margin-right:20px;
+}
+.ulleftsubitems {
+    background-color:white;
+}
+.ulleftsubitems li {
+    text-indent:60px;   
+    background-image:url('../resources/images/menuline.jpg');       
+    background-repeat:no-repeat;
+    background-position:45px 0px;
+    border-bottom:1px dotted #E4E4E4;
+}
+.ulleftsubitems li:hover {
+    color:#2B7DBC !important;
+    background-image:url('../resources/images/menuarrow.jpg');   
+}
