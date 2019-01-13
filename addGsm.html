@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>欢迎使用CSDN-markdown编辑器</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><p>扫描二维码添加GSM设备，如果设备已经被添加会提示设备已经被添加，需要删除设备后才能添加。<br>
+目前GSM设备添加成功后注册到对应区域后(比如：cn，eu，us，as)，不能更改。后续会进行优化。</p>
+<ul>
+<li>
+<p>正式环境URL: <code>https://cn(区域)-api.coolkit.cn:8080/api/user/device/addGsm</code></p>
+</li>
+<li>
+<p>测试环境URL: <code>https://testapi.coolkit.cn:8080/api/user/device/addGsm</code></p>
+</li>
+<li>
+<p>请求方法： POST</p>
+</li>
+<li>
+<p>请求参数：</p>
+</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">id</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>id编码，公式：MD5(deviceid+apikey)注意顺序</td>
+</tr>
+<tr>
+<td align="left">name</td>
+<td align="left">否</td>
+<td align="left">String</td>
+<td>设备名称</td>
+</tr>
+</tbody>
+</table><p><strong>响应参数:</strong></p>
+<ul>
+<li>成功返回</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">device</td>
+<td align="left">否</td>
+<td align="left">Object</td>
+<td>设备信息，成功才返回</td>
+</tr>
+</tbody>
+</table><ul>
+<li>失败返回</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">code</td>
+<td align="left">否</td>
+<td align="left">Int</td>
+<td>错误代码</td>
+</tr>
+<tr>
+<td align="left">error</td>
+<td align="left">否</td>
+<td align="left">Sting</td>
+<td>错误描述</td>
+</tr>
+</tbody>
+</table><pre><code>1.Device name, id and apikey must not be empty! (传递的参数不完整) code：400
+2.Invalid device id format! (设备id不符合规范) &nbsp; &nbsp;&nbsp;code：401
+3.Add device failed! (添加设备失败) &nbsp;&nbsp;code：500
+4.Device does not exist! (设备不存在) &nbsp;code：404
+5.Device not belong to this brand! (设备不属于该品牌) &nbsp;code：403
+6.Device has already been added!' : 'Device belongs to other user! (设备已经被添加) &nbsp;code：409
+7.find brand failed! (查找品牌失败 ps：设备列表展现字段) &nbsp;code：502
+8.find modelInfo failed! (查找产品型号失败 ps：设备列表展现字段) &nbsp;code：503
+</code></pre>
+<ul>
+<li>设备信息</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">name</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>设备名称</td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>类型</td>
+</tr>
+<tr>
+<td align="left">deviceid</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>设备id</td>
+</tr>
+<tr>
+<td align="left">apikey</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>用户apikey</td>
+</tr>
+<tr>
+<td align="left">extra</td>
+<td align="left">是</td>
+<td align="left">Object</td>
+<td>关联表引用信息</td>
+</tr>
+<tr>
+<td align="left">onlineTime</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>设备最后上线时间</td>
+</tr>
+<tr>
+<td align="left">ip</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>设备上线的ip地址</td>
+</tr>
+<tr>
+<td align="left">location</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>设备上线的地方</td>
+</tr>
+<tr>
+<td align="left">settings</td>
+<td align="left">是</td>
+<td align="left">Object</td>
+<td>设备配置信息</td>
+</tr>
+<tr>
+<td align="left">groups</td>
+<td align="left">是</td>
+<td align="left">[String]</td>
+<td>设备所属的分组ID，设备可以属于多个分组。如果不属于任何分组，则返回空数组[]</td>
+</tr>
+<tr>
+<td align="left">params</td>
+<td align="left">是</td>
+<td align="left">Object</td>
+<td>设备参数</td>
+</tr>
+<tr>
+<td align="left">online</td>
+<td align="left">是</td>
+<td align="left">Boolean</td>
+<td>设备是否在线</td>
+</tr>
+<tr>
+<td align="left">createdAt</td>
+<td align="left">是</td>
+<td align="left">Date</td>
+<td>设备添加时间</td>
+</tr>
+<tr>
+<td align="left">sharedBy</td>
+<td align="left">否</td>
+<td align="left">Object</td>
+<td>分享列表，被分享方返回</td>
+</tr>
+<tr>
+<td align="left">sharedTo</td>
+<td align="left">否</td>
+<td align="left">Object</td>
+<td>分享列表,分享方返回</td>
+</tr>
+<tr>
+<td align="left">devicekey</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>设备apikey</td>
+</tr>
+<tr>
+<td align="left">deviceUrl</td>
+<td align="left">否</td>
+<td align="left">String</td>
+<td>设备详情界面url</td>
+</tr>
+<tr>
+<td align="left">brandName</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>品牌</td>
+</tr>
+<tr>
+<td align="left">productModel</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>产品型号</td>
+</tr>
+<tr>
+<td align="left">showBrand</td>
+<td align="left">是</td>
+<td align="left">Boolean</td>
+<td>是否展示品牌和产品型号</td>
+</tr>
+<tr>
+<td align="left">uiid</td>
+<td align="left">是</td>
+<td align="left">Int</td>
+<td>设备ui的id</td>
+</tr>
+</tbody>
+</table></div>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>欢迎使用CSDN-markdown编辑器</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><p>查询设备的状态。比如：定时器，开关状态等</p>
+<ul>
+<li>现网环境URL: <code>https://cn(区域)-api.coolkit.cn:8080/api/user/device/status</code></li>
+<li>测试环境URL: <code>https:test-api.coolkit.cn:8080/api/user/device/status</code></li>
+<li>请求方法： GET</li>
+<li>请求参数：</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">deviceid</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>设备id</td>
+</tr>
+<tr>
+<td align="left">params</td>
+<td align="left">否</td>
+<td align="left">String</td>
+<td>参数列表，指定要查询的参数，用符号分隔（需要做URI encode）。如果为空，表示查询所有参数</td>
+</tr>
+</tbody>
+</table><pre><code>params举例说明：
+需要查询switch和timers，请求url为:
+https://cn-api.coolkit.cc:8080/api/user/device/status?deviceid=1234abcd
+</code></pre>
+<ul>
+<li>响应参数</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">error</td>
+<td align="left">是</td>
+<td align="left">Int</td>
+<td>错误码</td>
+</tr>
+<tr>
+<td align="left">errmsg</td>
+<td align="left">否</td>
+<td align="left">String</td>
+<td>错误说明，error非0时返回</td>
+</tr>
+<tr>
+<td align="left">params</td>
+<td align="left">否</td>
+<td align="left">Params</td>
+<td>参数</td>
+</tr>
+</tbody>
+</table><pre><code>错误码
+0:操作成功
+400:参数错误
+401:认证失败
+403:无权限
+500:服务器内部错误
+
+Params说明：
+返回对应参数的json值，如果没有查询到任何参数值，则返回空对象，例如：
+
+{&nbsp;"error":&nbsp;0,"params":&nbsp;{&nbsp;"switch":&nbsp;"on"&nbsp;}&nbsp;}
+没有查询到任何参数：
+{&nbsp;"error":&nbsp;0,"params":&nbsp;{&nbsp;}&nbsp;}
+</code></pre>
+</div>
+</body>
+
+</html>

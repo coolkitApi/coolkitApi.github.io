@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>欢迎使用CSDN-markdown编辑器</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><p>验证码作为注册，重置密码，找回密码的用户安全认证校验，向指定电话号码或者邮箱发送。</p>
+<ul>
+<li>
+<p>正式环境URL: <code>https://cn(区域)-api.coolkit.cn:8080/api/sms</code></p>
+</li>
+<li>
+<p>测试环境URL: <code>https://testapi.coolkit.cn:8080/api/sms</code></p>
+</li>
+<li>
+<p>请求方法： POST</p>
+</li>
+<li>
+<p>请求参数：注意email和to不会同时存在，邮箱接收验证码只传email，电话号码接收验证码只传to</p>
+</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">sendType</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>发送类型：sendType:0 注册 ：只要手机号或者email格式合法并且未注册的用户就可以发送，已注册的用户再请求，不会发送验证码。 sendType:1 重置密码：要判断手机号或者邮箱是不是在Users表，不存在的不发送，应该提示账号不存在，避免用户填错了</td>
+</tr>
+<tr>
+<td align="left">email</td>
+<td align="left">否</td>
+<td align="left">String</td>
+<td>邮箱(email和to只传递其中一个，不能都不传递)</td>
+</tr>
+<tr>
+<td align="left">to</td>
+<td align="left">否</td>
+<td align="left">String</td>
+<td>用户手机号，带国家码。格式: +8615815725225 (+86中国)</td>
+</tr>
+</tbody>
+</table><p><strong>响应参数:</strong></p>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">error</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>错误码</td>
+</tr>
+<tr>
+<td align="left">region</td>
+<td align="left">否</td>
+<td align="left">String</td>
+<td>error：301的情况下用户所属区域代码，如：中国(cn)</td>
+</tr>
+</tbody>
+</table><pre><code>错误码：
+0:操作成功
+301:用户在其他大区，需要客户端结合region重定向,重新连接
+400:参数错误
+401:账号不存在
+409:用户已经注册
+500:服务器错误
+504:发送失败
+160038:发送频率高，超过限制
+</code></pre>
+</div>
+</body>
+
+</html>

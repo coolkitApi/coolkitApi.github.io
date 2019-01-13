@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>欢迎使用CSDN-markdown编辑器</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><pre><code>配对目的：
+1,获取设备数据
+2,让设备联网
+3,设备添加到用户帐号下
+</code></pre>
+<p>说明：<br>
+1,配对过程仅适用于不通过易微联APP配对添加设备的应用。比如：自主研发的APP配对添加设备。通过易微联APP配对添加设备的应用，不需要实现配对过程。<br>
+2,文档中的 IP 以及各项数据仅是示例<br>
+3,设备配对分为Touch和AP两种配对模式</p>
+<ul>
+<li>touch配对过程：</li>
+</ul>
+<ol>
+<li>
+<p>设备进入配置模式：touch模式</p>
+</li>
+<li>
+<p>设备等待APP广播 SSID &amp; password</p>
+</li>
+<li>
+<p>设备获取到 SSID &amp; password 后连上路由器，返回 touch UDP 确认包</p>
+</li>
+<li>
+<p>设备建立 TCP server（http server）</p>
+</li>
+<li>
+<p>手机发送：（请求配对）<br>
+GET /device HTTP/1.1<br>
+Host: 192.168.1.1<br>
+Connection: Keep-Alive</p>
+</li>
+<li>
+<p>设备回应： （回应 deviceID 、apikey）<br>
+HTTP/1.1 200 OK<br>
+Content-Type: application/json<br>
+Connection: keep-alive<br>
+Content-Length: 99</p>
+<pre><code> {
+ 		"deviceid":     "100000788a",
+ 		"apikey":       "4b21ebbe-8870-4d4a-93f2-7c6cfeff5fea",
+ 		"accept":       "post"
+ }
+</code></pre>
+</li>
+<li>
+<p>手机回应：（回应 分配服务器地址，端口号，wifi 热点 SSID、密码）<br>
+POST /ap HTTP/1.1<br>
+User-Agent: Dalvik/1.6.0 (Linux; U; Android 4.4.2; SM705 Build/SANFRANCISCO)<br>
+Host: 192.168.1.1<br>
+Connection: Keep-Alive<br>
+Accept-Encoding: gzip<br>
+Content-Type: application/x-www-form-urlencoded<br>
+Content-Length: 76</p>
+<pre><code> {"port":443,"serverName":"54.223.98.144","password":"12345678","ssid":"ITT"}
+</code></pre>
+</li>
+<li>
+<p>设备回应：<br>
+HTTP/1.1 200 OK<br>
+Content-Type: application/json<br>
+Connection: keep-alive<br>
+Content-Length: 11</p>
+<pre><code> {"error":0}
+</code></pre>
+</li>
+<li>
+<p>配对完成</p>
+</li>
+</ol>
+<br>
+- AP配对过程：
+<ol>
+<li>
+<p>设备进入配置模式：AP 热点，TCP server（http server）</p>
+</li>
+<li>
+<p>手机连到 AP</p>
+</li>
+<li>
+<p>手机发送：（请求配对）<br>
+GET /device HTTP/1.1<br>
+Host: 192.168.1.1<br>
+Connection: Keep-Alive</p>
+</li>
+<li>
+<p>设备回应： （回应 deviceID 、apikey）<br>
+HTTP/1.1 200 OK<br>
+Content-Type: application/json<br>
+Connection: keep-alive<br>
+Content-Length: 99</p>
+<pre><code> {
+ 		"deviceid":     "100000788a",
+ 		"apikey":       "4b21ebbe-8870-4d4a-93f2-7c6cfeff5fea",
+ 		"accept":       "post"
+ }
+</code></pre>
+</li>
+<li>
+<p>手机回应：（回应 分配服务器地址，端口号，wifi 热点 SSID、密码）<br>
+POST /ap HTTP/1.1<br>
+User-Agent: Dalvik/1.6.0 (Linux; U; Android 4.4.2; SM705 Build/SANFRANCISCO)<br>
+Host: 192.168.1.1<br>
+Connection: Keep-Alive<br>
+Accept-Encoding: gzip<br>
+Content-Type: application/x-www-form-urlencoded<br>
+Content-Length: 76</p>
+<pre><code> {"port":443,"serverName":"54.223.98.144","password":"12345678","ssid":"ITT"}
+</code></pre>
+</li>
+<li>
+<p>设备回应：<br>
+HTTP/1.1 200 OK<br>
+Content-Type: application/json<br>
+Connection: keep-alive<br>
+Content-Length: 11</p>
+<pre><code> {"error":0}
+</code></pre>
+</li>
+<li>
+<p>手机重新连接 wifi ，与服务器交互</p>
+</li>
+</ol>
+</div>
+</body>
+
+</html>

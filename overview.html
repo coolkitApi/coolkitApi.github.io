@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>欢迎使用CSDN-markdown编辑器</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+  <style> 
+   a{text-decoration:none} 
+   </style>
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><p>API中心提供用户帐号信息管理，提供注册以及修改密码等服务。<br>
+设备管理包括设备的添加，设备分组等设备信息服务。<br>
+设备控制提供对设备开关，颜色，色温，亮度的调整，设备的分享以及设备定时器的设置。</p>
+<p><strong>区域功能</strong></p>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">接口资源</th>
+<th align="left">接口功能说明</th>
+<th>接口详细文档</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Region</td>
+<td align="left">获取当前区域</td>
+<td><a href="region.html" target="_blank" title="api/user/region">api/user/region</a></td>
+</tr>
+</tbody>
+</table><p><strong>帐号管理功能</strong></p>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">接口资源</th>
+<th align="left">接口功能说明</th>
+<th>接口详细文档</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">验证码</td>
+<td align="left">注册，重置密码，找回密码获取验证码</td>
+<td><a href="verificationCode.html" target="_blank" title="api/sms">api/sms</a></td>
+</tr>
+<tr>
+<td align="left">注册</td>
+<td align="left">注册APP帐号</td>
+<td><a href="register.html" target="_blank" title="api/user/register">api/user/register</a></td>
+</tr>
+<tr>
+<td align="left">找回密码</td>
+<td align="left">忘记密码的情况下，通过注册的帐号接收验证码，重新设置密码</td>
+<td><a href="reset.html" target="_blank" title="/api/user/password/reset">/api/user/password/reset</a></td>
+</tr>
+<tr>
+<td align="left">重置密码</td>
+<td align="left">出于帐号安全，通过原来的密码设置帐号新密码，不需要通过验证码方式校验</td>
+<td><a href="password.html" target="_blank" title="/api/user/password">/api/user/password</a></td>
+</tr>
+<tr>
+<td align="left">登录</td>
+<td align="left">登录APP</td>
+<td><a href="login.html" target="_blank" title="api/user/login">api/user/login</a></td>
+</tr>
+<tr>
+<td align="left">token刷新</td>
+<td align="left">aceess token失效时，可通过refresh token重新获取token</td>
+<td><a href="token.html" target="_blank" title="api/user/refresh">api/user/refresh</a></td>
+</tr>
+</tbody>
+</table><p><strong>设备管理功能</strong></p>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">接口资源</th>
+<th align="left">接口功能说明</th>
+<th>接口详细文档</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">设备列表</td>
+<td align="left">或者帐号下添加的所有设备，包括分享给用户的设备</td>
+<td><a href="deviceList.html" target="_blank" title="api/user/device">api/user/device</a></td>
+</tr>
+<tr>
+<td align="left">单个设备查询</td>
+<td align="left">通过设备id，查询单个设备信息</td>
+<td><a href="device.html" target="_blank" title="api/user/device/:deviceid">api/user/device/:deviceid</a></td>
+</tr>
+<tr>
+<td align="left">添加设备</td>
+<td align="left">设备添加到用户帐号下</td>
+<td><a href="addDevice.html" target="_blank" title="api/user/device/add">api/user/device/add</a></td>
+</tr>
+<tr>
+<td align="left">删除设备</td>
+<td align="left">设备从用户帐号下移除</td>
+<td><a href="deviceDelete.html" target="_blank" title="api/user/device/:deviceid">api/user/device/:deviceid</a></td>
+</tr>
+<tr>
+<td align="left">修改设备</td>
+<td align="left">修改设备名称</td>
+<td><a href="deviceUpdate.html" target="_blank" title="api/user/device/:deviceid">api/user/device/:deviceid</a></td>
+</tr>
+<tr>
+<td align="left">增加GSM设备</td>
+<td align="left">扫描二维码添加GSM设备</td>
+<td><a href="addGsm.html" target="_blank" title="api/user/device/addGsm">api/user/device/addGsm</a></td>
+</tr>
+<tr>
+<td align="left">增加分组</td>
+<td align="left">管理设备的分组</td>
+<td><a href="group" target="_blank" title="api/group">api/group</a></td>
+</tr>
+<tr>
+<td align="left">修改分组</td>
+<td align="left">修改分组名称，app上展示的顺序</td>
+<td><a href="groupUpdate" target="_blank" title="api/group">api/group</a></td>
+</tr>
+<tr>
+<td align="left">删除分组</td>
+<td align="left">1,删除分组 2,删除分组以及分组下的设备</td>
+<td><a href="groupDelete" target="_blank" title="api/group">api/group</a></td>
+</tr>
+<tr>
+<td align="left">添加设备到分组</td>
+<td align="left">给设备划分分组</td>
+<td><a href="groupDevice.html" target="_blank" title="api/group/addDevice">api/group/addDevice</a></td>
+</tr>
+<tr>
+<td align="left">查询设备分组</td>
+<td align="left">获取设备所有分组信息</td>
+<td><a href="groupSelect.html" target="_blank" title="api/group">api/group</a></td>
+</tr>
+</tbody>
+</table><p><strong>设备控制功能</strong></p>
+<ul>
+<li>WebSocket接口<br>
+说明除了分配服务外，其他为WebSocket接口。</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">接口资源</th>
+<th align="left">接口功能说明</th>
+<th>接口详细文档</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">分配服务</td>
+<td align="left">获取长连接信息</td>
+<td><a href="dispatch.html" target="_blank" title="dispatch/app">dispatch/app</a></td>
+</tr>
+<tr>
+<td align="left">握手</td>
+<td align="left">实现连接建立时的认证，客户端上报环境数据，服务器返回配置数据</td>
+<td><a href="userOnline.html" target="_blank" title="握手">握手</a></td>
+</tr>
+<tr>
+<td align="left">设备上线/离线</td>
+<td align="left">服务端检测到设备上线或者下线以后，会向app发送通知指令。该指令app端是被动接收，不需要主动发送</td>
+<td><a href="deviceOnline.html" target="_blank" title="设备上线/离线">设备上线/离线</a></td>
+</tr>
+<tr>
+<td align="left">更新/上报状态</td>
+<td align="left">更改设备状态。比如：开关，颜色，亮度，色温以及设置各类定时器</td>
+<td><a href="deviceReport.html" target="_blank" title="更新/上报状态">更新/上报状态</a></td>
+</tr>
+<tr>
+<td align="left">设备状态查询</td>
+<td align="left">设备端和app向服务器发送该指令，查询设备状态或者参数。比如：设备开关状态，是否设置定时器等</td>
+<td><a href="deviceStatus.html" target="_blank" title="设备状态查询">设备状态查询</a></td>
+</tr>
+<tr>
+<td align="left">分享</td>
+<td align="left">分享设备给其他用户，实现一个设备多人可以控制的场景</td>
+<td><a href="share.html" target="_blank" title="分享">分享</a></td>
+</tr>
+<tr>
+<td align="left">修改分享</td>
+<td align="left">修改设备分享的控制或者数据权限等</td>
+<td><a href="shareUpdate.html" target="_blank" title="修改分享">修改分享</a></td>
+</tr>
+<tr>
+<td align="left">撤销分享</td>
+<td align="left">收回分享的设备控制权限</td>
+<td><a href="shareCancel.html" target="_blank" title="撤销分享">撤销分享</a></td>
+</tr>
+</tbody>
+</table><ul>
+<li>HTTP接口</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">接口资源</th>
+<th align="left">接口功能说明</th>
+<th>接口详细文档</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">查询设备状态</td>
+<td align="left">设备端和app向服务器发送该指令，查询设备状态或者参数。比如：设备开关状态，是否设置定时器等</td>
+<td><a href="status.html" target="_blank" title="api/user/device/status">api/user/device/status</a></td>
+</tr>
+<tr>
+<td align="left">更新设备状态</td>
+<td align="left">更改设备状态。比如：开关，颜色，亮度，色温以及设置各类定时器</td>
+<td><a href="statusUpdate.html" target="_blank" title="api/user/device/status">api/user/device/status</a></td>
+</tr>
+</tbody>
+</table></div>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>欢迎使用CSDN-markdown编辑器</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><p>服务端检测到设备上线或者下线以后，会向app发送通知指令。该指令app端是被动接收，不需要主动发送。</p>
+<ul>
+<li>请求参数：</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">action</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>sysmsg</td>
+</tr>
+<tr>
+<td align="left">apikey</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>绑定用户的apikey</td>
+</tr>
+<tr>
+<td align="left">deviceid</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>设备id</td>
+</tr>
+<tr>
+<td align="left">params</td>
+<td align="left">是</td>
+<td align="left">Params</td>
+<td>设备参数</td>
+</tr>
+</tbody>
+</table><ul>
+<li>Params</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">online</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>true:设备上线。false:设备下线</td>
+</tr>
+</tbody>
+</table></div>
+</body>
+
+</html>

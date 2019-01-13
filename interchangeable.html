@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>欢迎使用CSDN-markdown编辑器</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><p>请求云平台服务认证准备。包括通用参数说明，认证所需的签名规则介绍，签名计算示例以及Access Token以及Refresh Token说明</p>
+<p><strong>开发通用说明</strong></p>
+<p>说明：通用说明里的参数是所有接口的公用参数，请求接口时需要传递通用参数+接口参数。（开发通用说明仅适用于REST API接口，WebSocket接口<a href="dispatch.html" target="_blank" title="请查看">请查看</a>）</p>
+<ul>
+<li>HTTP请求头需指定Content-Type:application/json</li>
+<li>字符编码：utf-8</li>
+<li>HTTP  请求头Authorization字段必须有签名或access token值</li>
+<li>HTTP和websocket接口全部使用SSL/TLS，端口为8080，服务端支持SSLV3,TLS1.1, TLS 1.2</li>
+</ul>
+<p><strong>必选参数如下：</strong></p>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">ts</td>
+<td align="left">是</td>
+<td align="left">Long</td>
+<td>进行接口调用时的时间戳，即当前时间戳 （时间戳：当前距离Epoch（1970年1月1日） 以秒计算的时间，即unix-timestamp）</td>
+</tr>
+<tr>
+<td align="left">appid</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>酷宅给第三方应用分配的appid</td>
+</tr>
+<tr>
+<td align="left">nonce</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>8位随机字符串，只由字母数字组成</td>
+</tr>
+<tr>
+<td align="left">version</td>
+<td align="left">是</td>
+<td align="left">Int</td>
+<td>version:8 协议版本</td>
+</tr>
+</tbody>
+</table><p><strong>签名规则</strong></p>
+<ul>
+<li>
+<p>未登录的所有接口（包括登录接口）调用都需要计算签名，签名值放在HTTP的Authorization头中。如：<br>
+Authorization:Sign QtKh6EnKoNmPnv17Ump3b/6r2hjojWb4nqSt4lnyj2U=</p>
+<pre><code>   签名算法见本章下文的签名计算
+</code></pre>
+</li>
+<li>
+<p>GET请求：<br>
+将所有参数（sign除外）按照参数名的字母顺序排序，并用&amp;连接：</p>
+<pre><code>  appid="I25m0KljbFfGsTjRc3eTwTEPVwKzsvCF"&amp;deviceid="1000052354"&amp;nonce="2323dfgh"&amp;ts=1545219251
+</code></pre>
+</li>
+</ul>
+<p>计算签名:将app secret作为key，生成被签名串的HMAC-SHA256 签名。<br>
+将得到的签名BASE64编码后设置到Authorization头中</p>
+<ul>
+<li>POST请求:<br>
+待签名串为整个body的json数据(通用说明里的参数以及接口中的参数)，以登录接口为例。 如：<br>
+<pre><code>{"appid":"I25m0KljbFfGsTjRc3eTwTEPVwKzsvCF","nonce":"232323df","ts":1545219251,"version":8,"phoneNumber":"+86********","password":""}</code></pre>
+或<br>
+<pre><code>{"appid":"I25m0KljbFfGsTjRc3eTwTEPVwKzsvCF","nonce":"232323df","ts":1545219251,"version":8,"email":"dev@coolit.cc","password":""}</code></pre>
+注意：phoneNumber的值需要加上国家码如：+86<br>
+phoneNumber和email只需要传递其中一个。亚洲区域传递phoneNumber，其他区域才传递email</li>
+</ul>
+<p><strong>签名计算</strong></p>
+<ul>
+<li>
+<p>签名算法demo: 【nodejs】 以登录接口为例  method:POST（GET方式查看签名规则）</p>
+<pre><code>
+var crypto = require("crypto");<br>
+var appid="I25m0KljbFfGsTjRc3eTwTEPVwKzsvCF";<br>
+var appsecret="S1fHFiMqzykNdxlSrk9Pjdczp7rsvt3M";<br>
+var params={"appid":"I25m0KljbFfGsTjRc3eTwTEPVwKzsvCF","phoneNumber":"+8613570211955","password":"lybywl163","ts":1545219251123,"version":8,"nonce":"asbsedwq"}<br>
+var buffer = new Buffer(JSON.stringify(params),"utf-8");<br>
+var theSign = crypto.createHmac("sha256", appsecret).update(buffer).digest("base64")
+</code></pre>
+</li>
+<li>
+<p>上述参数算出来的签名值<br>
+"QtKh6EnKoNmPnv17Ump3b/6r2hjojWb4nqSt4lnyj2U="<br>
+可以拿demo的参数放到自己的签名算法中，算出来的签名值和提供的签名值一致，表示签名算法通过。</p>
+</li>
+</ul>
+<p><strong>Access Token以及Refresh Token说明（即登录成功返回的at和rt）</strong></p>
+<ul>
+<li>登录后调用的接口都需要在Authorization头中增加access token，如下：<br>
+Authorization: Bearer 1832d4a0f5f5f5845cb1922c1091c8aa5dfe0041 （1832d4a0f5f5f5845cb1922c1091c8aa5dfe0041为登录返回的at）<br>
+登录接口成功后会返回access token （登录成功后返回的at，即access token）。</li>
+<li>access token有效期为一个月。同一个帐号在同一个应用下不能同时登录，每登录一次会重新刷新token，这样后面登录的用户会刷新token，让前面登录的用户token失效，被挤下线</li>
+<li>refresh token有效期为二个月。access token失效后可通过refresh token请求refresh token刷新接口，重新获取新的access token和refresh token。<a href="token.html" target="_blank">请查看 refresh token刷新</a></li>
+</ul>
+</div>
+</body>
+
+</html>

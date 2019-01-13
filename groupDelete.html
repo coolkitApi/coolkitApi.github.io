@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>欢迎使用CSDN-markdown编辑器</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><p>删除分组分两种。一：只删除分组，分组下的设备会进入未分组状态。二：分组与分组下的设备一起删除</p>
+<ul>
+<li>
+<p>正式环境URL: <code>https://cn(区域)-api.coolkit.cn:8080/api/group</code></p>
+</li>
+<li>
+<p>测试环境URL: <code>https://testapi.coolkit.cn:8080/api/group</code></p>
+</li>
+<li>
+<p>请求方法： DELETE</p>
+</li>
+<li>
+<p>请求参数：</p>
+</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">id</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>分组id</td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td align="left">是</td>
+<td align="left">Int</td>
+<td>0：只删除分组  1：连同分组下的设备一起删掉</td>
+</tr>
+</tbody>
+</table><p><strong>响应参数:</strong></p>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">error</td>
+<td align="left">是</td>
+<td align="left">Int</td>
+<td>错误码</td>
+</tr>
+</tbody>
+</table><pre><code>错误码
+0:操作成功
+400:参数错误
+401:认证失败
+500:服务器错误
+</code></pre>
+</div>
+</body>
+
+</html>

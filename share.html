@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>欢迎使用CSDN-markdown编辑器</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><p>app向服务端发送指令。分享设备给指定用户。分享的设备不能被再次分享。分享时需要被分享方在线，没有接收分享导致超时后，三分钟之后才能再次分享给该用户。用户接收分享后，没有分享时间限制。分享成功后被分享用户也可以控制设备，被分享用户不能进行分享、修改设备名称等操作。<br>
+注意：sequence参数为时间戳，精确到毫秒，响应中的sequence参数从请求参数中获取。</p>
+<ul>
+<li>请求参数：</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">apikey</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>用户apikey</td>
+</tr>
+<tr>
+<td align="left">deviceid</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>设备id</td>
+</tr>
+<tr>
+<td align="left">action</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>值为 share</td>
+</tr>
+<tr>
+<td align="left">userAgent</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>值为 app</td>
+</tr>
+<tr>
+<td align="left">params</td>
+<td align="left">是</td>
+<td align="left">ShareParam</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">sequence</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>时间戳，精确到毫秒</td>
+</tr>
+<tr>
+<td align="left">s_seq</td>
+<td align="left">否</td>
+<td align="left">String</td>
+<td>时间戳，精确到毫秒</td>
+</tr>
+</tbody>
+</table><ul>
+<li>ShareParam定义</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">uid</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>用户手机号，中文版客户端直接加上+86，国际版需要用户选择国家或者email</td>
+</tr>
+<tr>
+<td align="left">deviceName</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>设备名称</td>
+</tr>
+<tr>
+<td align="left">userName</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>用户名称</td>
+</tr>
+<tr>
+<td align="left">permit</td>
+<td align="left">否</td>
+<td align="left">Int</td>
+<td>权限值之和，采用位移操作计算，权限值定义如下：1:新增定时器;2:修改定时器;4:删除定时器;8:启用定时器</td>
+</tr>
+<tr>
+<td align="left">shareTime</td>
+<td align="left">否</td>
+<td align="left">Long</td>
+<td>GMT标准时间，毫秒数，主要用来在客户端显示排序</td>
+</tr>
+<tr>
+<td align="left">note</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>分享备注，长度为10个汉字</td>
+</tr>
+</tbody>
+</table><pre><code>permit计算规则：
+新增权限，例如要给用户赋予 新增、修改、启用定时器的权限
+permit=1 | 2 | 8  结果等于11
+
+在当前权限的基础上再新增权限
+permit= permit|xxx(具体的权限数值)
+
+2、删除某一个权限，比如当前权限是11（新增、修改、启用定时器），现在删除“修改权限”
+  当前permit=11
+  permit= permit ^ ( permit &amp; 2)    2代表的是“修改定时器”， 结果等于 9
+
+3、删除多个权限，还是以当前权限值11为例，要删除新增、修改权限
+	先计算出要删除的权限的和是多少
+delPermit= 1|2   结果等于3
+然后计算删除后的权限值
+当前permit=11
+permit= permit ^ ( permit &amp; delPermit)
+4、查询是否有某个权限，比如当前权限是11（新增、修改、启用定时器）
+当前permit=11
+	查询“修改权限”
+boolean isPermit=((permit &amp; 2) == 2)   结果为true
+查询“删除权限”
+boolean isPermit=((permit&amp; 4) == 4)    结果为false
+5、查询多个权限，类似删除多个权限，先计算要查询的权限之和，再查询
+当前permit=11
+查询是否有“修改权限”、“启用权限”
+queryPermit = 2|8   结果等于10
+boolean isPermit=((permit &amp; queryPermit) == queryPermit)   结果为true
+
+查询是否有“修改权限”、“删除权限”
+queryPermit= 2|4   结果等于6
+boolean isPermit=((permit &amp; queryPermit) == queryPermit)   结果为false
+
+针对网关类设备的说明：
+说明：分享相关的3个指令（分享、修改分享、删除分享）需要增加一个业务分支：
+1、 这3个指令首先要判断设备ui，如果是zigbee等网关设备，那么就要同时要把子设备一起分享、修改、删除给对方。比如：
+网关deviceid: 1000001
+子设备deviceid: 1000002, 1000003
+
+A用户把网关设备1000001分享给B用户， 那么除了网关的shareUsers下新增了B用户的信息以外，还要在子设备1000002, 1000003的shareUsers下新增B用户的信息。
+子设备的权限与网关的权限保持一致；
+
+主人如果需要针对某一个子设备给对方设置不一样的权限，可以在app里选中子设备单独进行修改，就像普通的设备一样操作。
+</code></pre>
+<ul>
+<li>响应参数</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">error</td>
+<td align="left">是</td>
+<td align="left">Int</td>
+<td>错误码</td>
+</tr>
+<tr>
+<td align="left">result</td>
+<td align="left">否</td>
+<td align="left">Int</td>
+<td>1:手机号不存在;2:用户接受分享;3:用户不接受分享;4:已分享</td>
+</tr>
+<tr>
+<td align="left">apikey</td>
+<td align="left">否</td>
+<td align="left">string</td>
+<td>分享方用户的apikey</td>
+</tr>
+<tr>
+<td align="left">deviceid</td>
+<td align="left">否</td>
+<td align="left">string</td>
+<td>设备id</td>
+</tr>
+<tr>
+<td align="left">sequence</td>
+<td align="left">否</td>
+<td align="left">string</td>
+<td>时间戳，精确到毫秒从请求参数中获取</td>
+</tr>
+</tbody>
+</table><pre><code>错误码
+0:ok(操作成功)
+400:Bad Request（参数错误）
+401:认证不通过
+403:Forbidden（无权限）
+406:用户在其他设备登录
+500:Internal Server Error（服务器内部错误）
+504:分享超时（对方没有拒绝也没有同意）
+</code></pre>
+</div>
+</body>
+
+</html>

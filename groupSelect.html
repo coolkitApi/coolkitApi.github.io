@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>欢迎使用CSDN-markdown编辑器</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><p>获取设备所在的所有分组，以及分组的创建时间，分组的排序编号。</p>
+<ul>
+<li>
+<p>正式环境URL: <code>https://cn(区域)-api.coolkit.cn:8080/api/group</code></p>
+</li>
+<li>
+<p>测试环境URL: <code>https://testapi.coolkit.cn:8080/api/group</code></p>
+</li>
+<li>
+<p>请求方法： GET</p>
+</li>
+<li>
+<p>请求参数：无</p>
+</li>
+</ul>
+<p><strong>响应参数:</strong></p>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">error</td>
+<td align="left">否</td>
+<td align="left">Int</td>
+<td>返回的异常信息,成功不返回error</td>
+</tr>
+<tr>
+<td align="left">groupinfos</td>
+<td align="left">否</td>
+<td align="left">[GroupInfos]</td>
+<td>分组信息</td>
+</tr>
+</tbody>
+</table><ul>
+<li>GroupInfos说明：</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">id</td>
+<td align="left">是</td>
+<td align="left">Sting</td>
+<td>分组id</td>
+</tr>
+<tr>
+<td align="left">name</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>分组名称</td>
+</tr>
+<tr>
+<td align="left">index</td>
+<td align="left">是</td>
+<td align="left">Int</td>
+<td>排序编号，客户端根据它决定显示顺序</td>
+</tr>
+<tr>
+<td align="left">createdAt</td>
+<td align="left">是</td>
+<td align="left">Date</td>
+<td>分组创建时间</td>
+</tr>
+</tbody>
+</table></div>
+</body>
+
+</html>

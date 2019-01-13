@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>欢迎使用CSDN-markdown编辑器</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><p>分享方撤销分享后，设备会在被分享用户app上的设备列表中删除，失去控制设备的权限。<br>
+说明：撤销分享时，可能已经被撤销过了，此处响应参数不做区分。</p>
+<ul>
+<li>请求参数：</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">apikey</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>用户apikey</td>
+</tr>
+<tr>
+<td align="left">deviceid</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>设备id</td>
+</tr>
+<tr>
+<td align="left">action</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>值为 cancelShare</td>
+</tr>
+<tr>
+<td align="left">userAgent</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>值为 app</td>
+</tr>
+<tr>
+<td align="left">params</td>
+<td align="left">是</td>
+<td align="left">ShareParam</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">sequence</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>时间戳，精确到毫秒</td>
+</tr>
+</tbody>
+</table><ul>
+<li>ShareParam定义</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">uid</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>用户手机号，中文版客户端直接加上+86，国际版需要用户选择国家或者email</td>
+</tr>
+</tbody>
+</table><ul>
+<li>响应参数</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">error</td>
+<td align="left">是</td>
+<td align="left">Int</td>
+<td>总可以成功，除非内部错误</td>
+</tr>
+<tr>
+<td align="left">sequence</td>
+<td align="left">是</td>
+<td align="left">string</td>
+<td>从请求参数中获取</td>
+</tr>
+</tbody>
+</table></div>
+</body>
+
+</html>

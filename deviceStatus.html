@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>欢迎使用CSDN-markdown编辑器</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><p>设备端和app向服务器发送该指令，查询设备状态或者参数。</p>
+<ul>
+<li>请求参数：</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">action</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>query</td>
+</tr>
+<tr>
+<td align="left">apikey</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>绑定用户的apikey</td>
+</tr>
+<tr>
+<td align="left">deviceid</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>设备id</td>
+</tr>
+<tr>
+<td align="left">userAgent</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>device：设备端。app: app端</td>
+</tr>
+<tr>
+<td align="left">params</td>
+<td align="left">是</td>
+<td align="left">[String]</td>
+<td>字符串数组，指定要查询的参数。如果为空表示查询所有参数</td>
+</tr>
+</tbody>
+</table><pre><code>	params说明：
+	[&nbsp;"switch"&nbsp;, &nbsp;"&nbsp;timers"]
+</code></pre>
+<ul>
+<li>响应参数</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">error</td>
+<td align="left">是</td>
+<td align="left">Int</td>
+<td>错误码</td>
+</tr>
+<tr>
+<td align="left">apikey</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>绑定用户的apikey</td>
+</tr>
+<tr>
+<td align="left">deviceid</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>设备id</td>
+</tr>
+<tr>
+<td align="left">params</td>
+<td align="left">是</td>
+<td align="left">Params</td>
+<td>键值对</td>
+</tr>
+</tbody>
+</table><pre><code>错误码
+0:ok(操作成功)
+400:Bad Request（参数错误）
+403:Forbidden（无权限）
+500:Internal Server Error（服务器内部错误）
+
+PARAM说明：
+直接返回对应参数的json值，如果没有查询到任何参数值，则返回0（设备端）或者空对象（app端），例如：
+{&nbsp;"error":&nbsp;0,&nbsp;"apikey":&nbsp;"123e4567­e89b­12d3­a456­426655440000",&nbsp; "deviceid":&nbsp;"01ad0253f2",&nbsp;"params":&nbsp;{&nbsp;"switch":&nbsp;"on"&nbsp;}&nbsp;}
+App端query，没有查询到任何参数
+{&nbsp;"error":&nbsp;0,&nbsp;"apikey":&nbsp;"123e4567­e89b­12d3­a456­426655440000",&nbsp; "deviceid":&nbsp;"01ad0253f2",&nbsp;"params":&nbsp;{&nbsp;}&nbsp;}
+</code></pre>
+</div>
+</body>
+
+</html>

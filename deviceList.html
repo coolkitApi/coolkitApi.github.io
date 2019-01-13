@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>欢迎使用CSDN-markdown编辑器</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><p>返回用户帐号下，添加的所有设备，包括分享设备。</p>
+<ul>
+<li>
+<p>正式环境URL: <code>https://cn(区域)-api.coolkit.cn:8080/api/user/device</code></p>
+</li>
+<li>
+<p>测试环境URL: <code>https://testapi.coolkit.cn:8080/api/user/device</code></p>
+</li>
+<li>
+<p>请求方法： GET</p>
+</li>
+<li>
+<p>请求参数：</p>
+</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">lang</td>
+<td align="left">否</td>
+<td align="left">String</td>
+<td>cn 响应返回中文信息。en 响应返回英文信息</td>
+</tr>
+</tbody>
+</table><p><strong>响应参数:</strong></p>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">error</td>
+<td align="left">否</td>
+<td align="left">string</td>
+<td>返回的异常信息。error：0 操作成功</td>
+</tr>
+<tr>
+<td align="left">devicelist</td>
+<td align="left">是</td>
+<td align="left">[Object]</td>
+<td>设备列表信息，成功才返回</td>
+</tr>
+</tbody>
+</table><ul>
+<li>设备信息列表</li>
+</ul>
+
+<table style="border: 1px solid gainsboro">
+<thead>
+<tr style="background-color:rgb(64, 158, 255)">
+<th align="left">参数名</th>
+<th align="left">必选</th>
+<th align="left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">name</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>设备名称</td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>类型</td>
+</tr>
+<tr>
+<td align="left">deviceid</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>设备id</td>
+</tr>
+<tr>
+<td align="left">apikey</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>用户apikey</td>
+</tr>
+<tr>
+<td align="left">extra</td>
+<td align="left">是</td>
+<td align="left">Object</td>
+<td>关联表引用信息</td>
+</tr>
+<tr>
+<td align="left">onlineTime</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>设备最后上线时间</td>
+</tr>
+<tr>
+<td align="left">ip</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>设备上线的ip地址</td>
+</tr>
+<tr>
+<td align="left">location</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>设备上线的地方</td>
+</tr>
+<tr>
+<td align="left">settings</td>
+<td align="left">是</td>
+<td align="left">Object</td>
+<td>设备配置信息</td>
+</tr>
+<tr>
+<td align="left">groups</td>
+<td align="left">是</td>
+<td align="left">[String]</td>
+<td>设备所属的分组ID，设备可以属于多个分组。如果不属于任何分组，则返回空数组[]</td>
+</tr>
+<tr>
+<td align="left">params</td>
+<td align="left">是</td>
+<td align="left">Object</td>
+<td>设备参数</td>
+</tr>
+<tr>
+<td align="left">online</td>
+<td align="left">是</td>
+<td align="left">Boolean</td>
+<td>设备是否在线</td>
+</tr>
+<tr>
+<td align="left">createdAt</td>
+<td align="left">是</td>
+<td align="left">Date</td>
+<td>设备添加时间</td>
+</tr>
+<tr>
+<td align="left">devicekey</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>设备apikey</td>
+</tr>
+<tr>
+<td align="left">deviceUrl</td>
+<td align="left">否</td>
+<td align="left">String</td>
+<td>设备详情界面url</td>
+</tr>
+<tr>
+<td align="left">brandName</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>品牌</td>
+</tr>
+<tr>
+<td align="left">productModel</td>
+<td align="left">是</td>
+<td align="left">String</td>
+<td>产品型号</td>
+</tr>
+<tr>
+<td align="left">showBrand</td>
+<td align="left">是</td>
+<td align="left">Boolean</td>
+<td>是否展示品牌和产品型号</td>
+</tr>
+<tr>
+<td align="left">uiid</td>
+<td align="left">是</td>
+<td align="left">Int</td>
+<td>设备ui的id</td>
+</tr>
+</tbody>
+</table></div>
+</body>
+
+</html>
